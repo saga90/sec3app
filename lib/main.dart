@@ -131,20 +131,25 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildAppTile(Map<String, dynamic> app) {
+    List<dynamic> permissions = app['permissions'] ?? [];
+    List<String> dangerousPerms = permissions
+        .where((perm) => dangerousPermissions.contains(perm))
+        .cast<String>()
+        .toList();
+    int dangerousPermCount = dangerousPerms.length;
+
     return ExpansionTile(
       title: Text(app['packageName']),
-      subtitle: Text(app['appName']),
+      subtitle: Text('${app['appName']} • $dangerousPermCount dangerous permissions'),
       children: [
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Text(
-            'Permissions:',
+            'Dangerous Permissions:',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
-        ...List<Widget>.from((app['permissions'] as List<dynamic>)
-            .where((perm) => dangerousPermissions.contains(perm))
-            .map((perm) => ListTile(title: Text(perm)))),
+        ...dangerousPerms.map((perm) => ListTile(title: Text(perm))),
       ],
     );
   }
