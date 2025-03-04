@@ -1,0 +1,51 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.sec3app">
+
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <!-- Needed for detecting installed apps -->
+    <queries>
+        <!-- TikTok -->
+        <package android:name="com.ss.android.ugc.trill" />
+        <!-- Temu -->
+        <package android:name="com.einnovation.temu" />
+        <!-- (Optional) Other important apps -->
+        <!-- <package android:name="com.whatsapp" /> -->
+        <!-- <package android:name="com.facebook.katana" /> -->
+    </queries>
+
+
+
+    <application
+        android:label="sec3app"
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@style/LaunchTheme">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+
+            <!-- Flutter theme -->
+            <meta-data
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <!-- Flutter embedding version -->
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+
+    </application>
+
+</manifest>
